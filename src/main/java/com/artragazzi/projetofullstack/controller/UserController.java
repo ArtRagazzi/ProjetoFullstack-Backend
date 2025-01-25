@@ -54,4 +54,16 @@ public class UserController {
         return ResponseEntity.created(location).body(savedUser);
         //return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO  userDTO){
+        UserDTO newUser = userService.update(id,userDTO);
+        return ResponseEntity.ok(newUser);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

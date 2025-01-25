@@ -41,8 +41,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO update(UserDTO userDTO) {
-        User user = userRepository.findById(userDTO.getId()).orElseThrow(() -> new UserNotFoundException(userDTO.getId()));
+    public UserDTO update(Long id, UserDTO userDTO) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
 
         // Atualiza os campos da entidade com os valores do DTO
         user.setName(userDTO.getName());
